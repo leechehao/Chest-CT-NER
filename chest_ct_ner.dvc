@@ -1,6 +1,46 @@
 outs:
-- md5: 8dcec2f25a42417465c060ecb4981cc7.dir
-  size: 443094
-  nfiles: 6
-  hash: md5
+- hash: md5
   path: chest_ct_ner
+  files:
+  - relpath: program_data/chest_ct_ner/README.md
+    md5: e46d2f3aa82d813e8ab61561dd1edfdb
+    size: 1404
+    cloud:
+      storage:
+        etag: e46d2f3aa82d813e8ab61561dd1edfdb
+        version_id: 3ea56fd2-c8e4-4606-90bb-10a42c56bbbf
+  - relpath: program_data/chest_ct_ner/chest_ct_ner.py
+    md5: b3545ddf500084b0aef8dbeb17f2e9a0
+    size: 4027
+    cloud:
+      storage:
+        etag: b3545ddf500084b0aef8dbeb17f2e9a0
+        version_id: 84a838f5-8515-4feb-8184-cf6e7a4d8026
+  - relpath: program_data/chest_ct_ner/data/test.conll
+    md5: f3da44aef876feca65be704c62616832
+    size: 6249
+    cloud:
+      storage:
+        etag: f3da44aef876feca65be704c62616832
+        version_id: 8ed62735-8bd5-4fdb-b458-38f767775521
+  - relpath: program_data/chest_ct_ner/data/train.conll
+    md5: 6508e25e61083d6805836b46f5d7fb09
+    size: 22107
+    cloud:
+      storage:
+        etag: 6508e25e61083d6805836b46f5d7fb09
+        version_id: 634ea600-ca84-4624-98b9-bbc6268e543b
+  - relpath: program_data/chest_ct_ner/data/validation.conll
+    md5: 05e8a028896676bfb6be08451197dc47
+    size: 2257
+    cloud:
+      storage:
+        etag: 05e8a028896676bfb6be08451197dc47
+        version_id: 6d227fea-e5c3-4d22-bd25-cdf1a0816c70
+  - relpath: raw_data/chest_ct_ner_2023-05-08-00-00.json
+    md5: 354760568d08c71a31346e70394c04ca
+    size: 407050
+    cloud:
+      storage:
+        etag: 354760568d08c71a31346e70394c04ca
+        version_id: 8cd47cb9-ca21-43c2-b0a2-774b989784ac
