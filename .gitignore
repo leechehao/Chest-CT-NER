@@ -6,3 +6,6 @@
 
 # dvcfile
 /chest_ct_ner
+
+# config
+config.yaml

@@ -1,6 +1,12 @@
 pipeline {
-    agent { dockerfile true }
+    agent {
+        dockerfile {
+            additionalBuildArgs '-t jenkins-chest_ct_ner'
+            args '--gpus all'
+        }
+    }
     environment {
+            TRACKING_URI = "http://192.168.1.76:9527"
             PROJECT_NAME = 'chest_ct_ner'
             NEW_DATA_DIR = './new_data'
             AWS_ACCESS_KEY_ID = "lxzZTFO4o2W68FznEfGT"
@@ -23,6 +29,11 @@ pipeline {
         stage('Data preparation') {
             steps {
                 sh '3_data_preparation/run_data_preparation.sh'
+            }
+        }
+        stage('Model training') {
+            steps {
+                sh '4_model_training/run_model_training.sh'
             }
         }
     }
