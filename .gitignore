@@ -1,0 +1,8 @@
+# Notebook
+*.ipynb
+
+# VS Code
+.vscode
+
+# dvcfile
+/chest_ct_ner

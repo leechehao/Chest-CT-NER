@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "sentence": { "type": "string" }
+      },
+      "required": ["sentence"]
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "properties": {
+                    "text": { "type": "string" },
+                    "start": { "type": "integer" },
+                    "end": { "type": "integer" },
+                    "labels": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  },
+                  "required": ["text", "start", "end", "labels"]
+                },
+                "id": { "type": "string" }
+              },
+              "dependencies": {
+                "value": ["id"]
+              }
+            }
+          }
+        },
+        "required": ["result"]
+      }
+    }
+  },
+  "required": ["data", "annotations"]
+}

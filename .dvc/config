@@ -1,0 +1,9 @@
+[core]
+    autostage = true
+    remote = storage
+['remote "storage"']
+    url = s3://dvcstore
+    version_aware = true
+    endpointurl = https://s3.minio.wingene.k8s
+    ssl_verify = false
+    use_ssl = false

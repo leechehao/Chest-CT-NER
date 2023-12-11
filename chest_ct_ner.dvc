@@ -1,0 +1,6 @@
+outs:
+- md5: 8dcec2f25a42417465c060ecb4981cc7.dir
+  size: 443094
+  nfiles: 6
+  hash: md5
+  path: chest_ct_ner
