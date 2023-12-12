@@ -36,6 +36,11 @@ pipeline {
                 sh '4_model_training/run_model_training.sh'
             }
         }
+        stage('Model evaluation') {
+            steps {
+                sh '5_model_evaluation/run_model_evaluation.sh'
+            }
+        }
     }
     post{
         always {
