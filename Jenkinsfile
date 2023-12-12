@@ -6,14 +6,15 @@ pipeline {
         }
     }
     environment {
-            TRACKING_URI = "http://192.168.1.76:9527"
+            TRACKING_URI = credentials('75541b4f-29c2-4667-8903-986d54e66a0b')
+            EXPERIMENT_NAME = 'Chest_CT_NER'
             PROJECT_NAME = 'chest_ct_ner'
             NEW_DATA_DIR = './new_data'
-            AWS_ACCESS_KEY_ID = "lxzZTFO4o2W68FznEfGT"
-            AWS_SECRET_ACCESS_KEY = "CWYvxv6G1DQpPLT3NCuwbbbqNzz1rAhOHzAGka7e"
-            MLFLOW_S3_ENDPOINT_URL = "https://s3.minio.wingene.k8s"
+            AWS_ACCESS_KEY_ID = credentials('57a926de-56bd-4634-840d-986f704ce9bd')
+            AWS_SECRET_ACCESS_KEY = credentials('c522bcb8-8c81-486a-8022-f1f70c016a26')
+            MLFLOW_S3_ENDPOINT_URL = credentials('f9527c9d-6b16-4677-b7e7-0bfac884a319')
             MLFLOW_S3_IGNORE_TLS = true
-            GITEA_CRED = credentials('3251a418-9084-4a30-a088-ed294f492388')
+            GITEA_CRED = credentials('726c3241-f2bf-4628-83fd-d9e143737241')
         }
     stages {
         stage('Data extraction') {
@@ -39,6 +40,11 @@ pipeline {
         stage('Model evaluation') {
             steps {
                 sh '5_model_evaluation/run_model_evaluation.sh'
+            }
+        }
+        stage('Model validation') {
+            steps {
+                sh '6_model_validation/run_model_validation.sh'
             }
         }
     }

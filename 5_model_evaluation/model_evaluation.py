@@ -6,7 +6,7 @@ import yaml
 
 mlflow.set_tracking_uri(os.getenv("TRACKING_URI"))  # os.getenv("TRACKING_URI") http://192.168.1.76:9527
 client = mlflow.MlflowClient()
-model_name = os.getenv("PROJECT_NAME")  # os.getenv("PROJECT_NAME") chest_ct_ner
+model_name = os.getenv("EXPERIMENT_NAME")  # os.getenv("EXPERIMENT_NAME") Chest_CT_NER
 
 registered_model = client.get_registered_model(model_name).latest_versions[0]
 
