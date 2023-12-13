@@ -43,5 +43,5 @@ git add --all
 git commit -m "[Add] 新增 $new_dataset_list 資料集"
 git checkout main
 git merge pipeline --no-ff
-git push http://"$GITEA_CRED"@${GIT_URL#http://} main
+git push http://$GITEA_CRED@${GIT_URL#http://} main
 git branch -d pipeline

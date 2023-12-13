@@ -15,6 +15,8 @@ pipeline {
             MLFLOW_S3_ENDPOINT_URL = credentials('f9527c9d-6b16-4677-b7e7-0bfac884a319')
             MLFLOW_S3_IGNORE_TLS = true
             GITEA_CRED = credentials('726c3241-f2bf-4628-83fd-d9e143737241')
+            TOKEN = credentials('ef19446d-6168-4562-8bf2-935f46a48ab7')
+            TOKEN_NAME = credentials('43bdeab8-2091-4c48-adc5-6b62c94e714b')
         }
     stages {
         stage('Data extraction') {
