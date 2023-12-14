@@ -88,8 +88,6 @@ def segment_ligatures_by_ent(label_data: list[TextInfo]) -> None:
 
 def tag_BIO(label_data: list[TextInfo]) -> None:
     for label in label_data:
-        if "LULMultiple focal atelectatic patches and subpleural reticular opacities in LUL and bil. LL ," in label.text:
-            print()
         label.create_tags()
         for ent in label.ents:
             ent_info = TextInfo(text=ent[0], point=ent[1])

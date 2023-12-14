@@ -9,4 +9,5 @@ if [ -n "$files" ]; then
     echo "$files"
 else
     echo "沒有偵測到新資料:"
+    exit 1
 fi

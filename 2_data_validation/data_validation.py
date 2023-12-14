@@ -11,7 +11,7 @@ NEW_DATA_DIR = os.getenv("NEW_DATA_DIR")
 
 def main():
     with open("2_data_validation/schema.json") as file:
-        schema =json.load(file)
+        schema = json.load(file)
 
     for file_name in os.listdir(NEW_DATA_DIR):
         file_path = os.path.join(NEW_DATA_DIR, file_name)
@@ -24,7 +24,7 @@ def main():
                 try:
                     validate(instance=instance, schema=schema)
                 except ValidationError as e:
-                    print(f"第{i}筆 JSON data 無效 >_<")
+                    print(f"第{i + 1}筆 JSON data 無效 >_<")
                     print("Error message:", e.message)
                     sys.exit(1)
             print(f"恭喜 {file_name} 資料有效 ^_^")
