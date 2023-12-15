@@ -54,11 +54,11 @@ pipeline {
         always {
             cleanWs()
         }
-        failure {
-            slackSend(color: "danger", message: "Failed Pipeline: ${env.JOB_NAME}\nSomething is wrong with ${env.BUILD_URL}")
-            // mail to: 'bryant.lee@wingene.com.tw',
-            //      subject: "Failed Pipeline: ${env.JOB_NAME}",
-            //      body: "Something is wrong with ${env.BUILD_URL}"
-        }
+        // failure {
+        //     slackSend(color: "danger", message: "Failed Pipeline: ${env.JOB_NAME}\nSomething is wrong with ${env.BUILD_URL}")
+        //     mail to: 'bryant.lee@wingene.com.tw',
+        //          subject: "Failed Pipeline: ${env.JOB_NAME}",
+        //          body: "Something is wrong with ${env.BUILD_URL}"
+        // }
     }
 }

@@ -14,6 +14,8 @@ for file in "$NEW_DATA_DIR"/*; do
         filename=${basename%.*}
         same="false"
 
+        echo ">>>>> 建立 $filename 資料集中... <<<<<"
+
         # 檢查新資料與現有資料內容是否一致
         for raw_file in "$PROJECT_NAME"/raw_data/*; do
             if diff $file $raw_file > /dev/null; then
@@ -26,7 +28,7 @@ for file in "$NEW_DATA_DIR"/*; do
         # 如果內容一致則不重複建立資料集
         if [ "$same" == "true" ]; then
             echo "===== 建立 $filename 資料集失敗 >_< ====="
-            continue
+            exit 1
         fi
 
         # 執行 python 腳本，並將檔案位置作為參數
@@ -35,7 +37,7 @@ for file in "$NEW_DATA_DIR"/*; do
         --field_name sentence \
         --output_dir ./"$PROJECT_NAME"/program_data/"$filename"; then
             echo "===== 建立 $filename 資料集失敗 >_< ====="
-            continue
+            exit 1
         fi
 
         # 複製 load_dataset_script.py 到新資料集
@@ -49,11 +51,6 @@ for file in "$NEW_DATA_DIR"/*; do
         echo "===== 成功建立 $filename 資料集 ^_^ ====="
     fi
 done
-
-if [ "$new_dataset_list" == '' ]; then
-    echo '本次自動訓練並沒有新資料集產生'
-    exit 1
-fi
 
 dvc add ./"$PROJECT_NAME"
 dvc push
