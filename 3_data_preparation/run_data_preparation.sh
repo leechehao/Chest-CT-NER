@@ -6,14 +6,28 @@ dvc pull
 new_dataset_list=''
 
 # 遍歷新資料
-for file in "$NEW_DATA_DIR"/*
-do
+for file in "$NEW_DATA_DIR"/*; do
     # 檢查是否為檔案
-    if [ -f "$file" ]
-    then
+    if [ -f "$file" ]; then
         # 從檔案路徑中提取檔案名稱，去除路徑和副檔名
         basename=$(basename "$file")
         filename=${basename%.*}
+        same="false"
+
+        # 檢查新資料與現有資料內容是否一致
+        for raw_file in "$PROJECT_NAME"/raw_data/*; do
+            if diff $file $raw_file > /dev/null; then
+                echo "偵測到 $file 和 $raw_file 內容一致"
+                same="true"
+                break
+            fi
+        done
+
+        # 如果內容一致則不重複建立資料集
+        if [ "$same" == "true" ]; then
+            echo "===== 建立 $filename 資料集失敗 >_< ====="
+            continue
+        fi
 
         # 執行 python 腳本，並將檔案位置作為參數
         if ! python 3_data_preparation/data_preparation.py \
@@ -35,6 +49,11 @@ do
         echo "===== 成功建立 $filename 資料集 ^_^ ====="
     fi
 done
+
+if [ "$new_dataset_list" == '' ]; then
+    echo '本次自動訓練並沒有新資料集產生'
+    exit 1
+fi
 
 dvc add ./"$PROJECT_NAME"
 dvc push
