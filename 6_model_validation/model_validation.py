@@ -5,7 +5,7 @@ import mlflow
 import yaml
 import requests
 from requests.auth import HTTPBasicAuth
-
+from mlflow.store.artifact.artifact_repository_registry import get_artifact_repository
 
 
 mlflow.set_tracking_uri(os.getenv("TRACKING_URI"))
@@ -34,4 +34,10 @@ if best_run["metrics.test_f1"] > score_json[0]["test_f1"]:
     else:
         print("錯誤:", response.status_code, response.text)
 else:
+    for run_id in re_train_runs.run_id:
+        run = client.get_run(run_id)
+        repository = get_artifact_repository(run.info.artifact_uri)
+        repository.delete_artifacts("model")
+        repository.delete_artifacts("onnx_model")
+        client.delete_tag(run_id, "mlflow.log-model.history")
     print("本次自動訓練沒有得到更好的模型")
