@@ -34,7 +34,7 @@ for file in "$NEW_DATA_DIR"/*; do
         # 執行 python 腳本，並將檔案位置作為參數
         if ! python 3_data_preparation/data_preparation.py \
         --input_file "$file" \
-        --field_name sentence \
+        --field_name Text \
         --output_dir ./"$PROJECT_NAME"/program_data/"$filename"; then
             echo "===== 建立 $filename 資料集失敗 >_< ====="
             exit 1

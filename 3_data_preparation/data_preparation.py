@@ -36,8 +36,12 @@ def process_annotation(annotation: dict) -> tuple:
 
 def extract_annotation_info(json_data: list[dict], field_name: str) -> list[TextInfo]:
     label_data = []
+    texts = []
     for example in json_data:
+        if example["data"][field_name] in texts:
+            continue
         example_info = TextInfo(text=example["data"][field_name])
+        texts.append(example["data"][field_name])
         for annotation in example["annotations"][0]["result"]:
             if "value" in annotation:  # 如果有 "value" 的 key，代表為 entity 的標註，反之為 relation 的標註
                 example_info.ents.append(process_annotation(annotation))

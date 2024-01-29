@@ -5,9 +5,9 @@
     "data": {
       "type": "object",
       "properties": {
-        "sentence": { "type": "string" }
+        "Text": { "type": "string" }
       },
-      "required": ["sentence"]
+      "required": ["Text"]
     },
     "annotations": {
       "type": "array",

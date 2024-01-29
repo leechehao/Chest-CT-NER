@@ -27,7 +27,7 @@ print(f"本次自動訓練最好分數: {best_run['metrics.test_f1']}")
 print(f"最新版註冊模型的分數: {score_json[0]['test_f1']}")
 
 if best_run["metrics.test_f1"] > score_json[0]["test_f1"]:
-    mlflow.register_model(f"runs:/{best_run['run_id']}/onnx_model", os.getenv("EXPERIMENT_NAME"))
+    mlflow.register_model(f"runs:/{best_run['run_id']}/onnx_model", os.getenv("REGISTERED_MODEL_NAME"))
     serving_job_url = f"{os.getenv('JENKINS_URL')}/job/Chest_CT_NER-serving/build?token={os.getenv('TOKEN_NAME')}"
     user = "bryant"
     token = os.getenv("TOKEN")
@@ -39,7 +39,7 @@ if best_run["metrics.test_f1"] > score_json[0]["test_f1"]:
 else:
     print("本次自動訓練沒有得到更好的模型")
 
-register_model_list = client.search_model_versions(f"name='{os.getenv('EXPERIMENT_NAME')}'")
+register_model_list = client.search_model_versions(f"name='{os.getenv('REGISTERED_MODEL_NAME')}'")
 register_model_run_id_list = [run.run_id for run in register_model_list]
 for run_id in re_train_runs.run_id:
     if run_id in register_model_run_id_list:

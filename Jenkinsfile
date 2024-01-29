@@ -1,5 +1,6 @@
 pipeline {
     agent {
+        // docker { image 'bryant' }
         dockerfile {
             additionalBuildArgs '-t jenkins-chest_ct_ner'
             args '--gpus all'
@@ -7,7 +8,8 @@ pipeline {
     }
     environment {
             TRACKING_URI = credentials('75541b4f-29c2-4667-8903-986d54e66a0b')
-            EXPERIMENT_NAME = 'Chest_CT_NER'
+            EXPERIMENT_NAME = 'Chest-CT-NER'
+            REGISTERED_MODEL_NAME = 'chest-ct-ner'
             PROJECT_NAME = 'chest_ct_ner'
             NEW_DATA_DIR = './new_data'
             AWS_ACCESS_KEY_ID = credentials('57a926de-56bd-4634-840d-986f704ce9bd')
