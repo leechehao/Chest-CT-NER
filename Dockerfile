@@ -5,7 +5,7 @@ COPY requirements.txt .
 RUN apt update && \
     apt install -y --no-install-recommends git && \
     pip install -r requirements.txt && \
-    pip install git+http://192.168.1.76:3000/bryant/MyMLOps.git@dev && \
+    pip install git+https://github.com/leechehao/HaoNLP.git && \
     apt clean && \
     rm -rf /root/.cache/pip /var/lib/apt/lists/* && \
     useradd --create-home jenkins
